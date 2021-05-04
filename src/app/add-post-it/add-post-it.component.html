@@ -1,0 +1,6 @@
+<label>Titolo:</label><br/>
+<input #newTitle/><br/>
+<label>Testo:</label><br/>
+<textarea #newText></textarea>
+<br/>
+<button (click)="addPostit(newTitle.value, newText.value);newTitle.value=''; newText.value=''">salva</button>
