@@ -1,7 +1,7 @@
 <h1>{{title}}</h1>
 <ul>
   <li *ngFor="let x of my_data | keyvalue">
-    <button (click)="showPostit(x.key)">{{x.key}}</button>
+    <button (click)="showPostit(x.key)">{{x.value.title}}</button>
     <button (click)="deletePostit(x.key)">cancella</button>
     </li>
 </ul>
