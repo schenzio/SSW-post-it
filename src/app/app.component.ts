@@ -24,15 +24,34 @@ export class AppComponent  {
     ) 
   } 
   load = this.getJSON();
-  showPostit(idsel: string) {
-    this.selected.title = this.my_data[idsel].title;
-    this.selected.text = this.my_data[idsel].text;
+  showPostit(idSel: string) {
+    this.selected.title = this.my_data[idSel].title;
+    this.selected.text = this.my_data[idSel].text;
   }
   test(){
     console.log(this.my_data["2"].title);
   }
-  deletePostit(sel: string ) {
-
+  addPostit(newPostit: Object){
+    var lastK: number = 0;
+    for (var key in this.my_data){
+      var my_keys = Object.keys(this.my_data);
+      var k = my_keys.length;
+      lastK = parseInt(my_keys[k-1]);
+    }
+    let i: number = lastK+1; 
+    var postit: any = {[i]: newPostit};
+    this.my_data = Object.assign(this.my_data, postit);
+    this.obj.postData(this.my_data).subscribe( 
+      (x: Object) => {},
+      err => console.error("Observer got an error: " + err)
+    );
+  }
+  deletePostit(idSel: string ) {
+    delete this.my_data[idSel];
+    this.obj.postData(this.my_data).subscribe( 
+      (x: Object) => {},
+      err => console.error("Observer got an error: " + err)
+    );
   }
   
 }
