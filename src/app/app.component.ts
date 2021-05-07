@@ -4,7 +4,7 @@ import { KVaaSService } from './kvaa-s.service';
 export class Postit{
   title: string;
   text: string;
-  priority: boolean;
+  pref: boolean;
 }
 @Component({
   selector: 'my-app',
@@ -34,7 +34,7 @@ export class AppComponent  {
     this.selected.text = this.my_data[idSel].text;
   }
   test(){
-    console.log(this.my_data["2"].title);
+    console.log(this.my_data);
   }
   addPostit(newPostit: Postit){
     this.my_data.push(newPostit);
@@ -51,5 +51,8 @@ export class AppComponent  {
       err => console.error("Observer got an error: " + err)
     );
   }
-  
+  showPref(){
+    var prefs:Array<Postit> = this.my_data.filter(postit => postit.pref==true);
+    console.log(prefs);
+  }
 }
