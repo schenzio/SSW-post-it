@@ -8,8 +8,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class AddPostItComponent implements OnInit {
   @Output() newPostitEvent = new EventEmitter<Object>();
   constructor() { }
-  newPostit(title: string, text: string){
-    this.newPostitEvent.emit({title, text});
+  newPostit(title: string, text: string, pref: boolean){
+    this.newPostitEvent.emit({title, text, pref});
   }
   ngOnInit() {
   }

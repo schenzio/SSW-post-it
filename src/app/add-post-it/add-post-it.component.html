@@ -3,4 +3,5 @@
 <label>Testo:</label><br/>
 <textarea #newText></textarea>
 <br/>
-<button (click)="newPostit(newTitle.value, newText.value);newTitle.value=''; newText.value=''">salva</button>
+<input type="radio" #newPref/>contrassegna importante<br/>
+<button (click)="newPostit(newTitle.value, newText.value, newPref.checked);newTitle.value=''; newText.value=''; newPref.checked=false">salva</button>
