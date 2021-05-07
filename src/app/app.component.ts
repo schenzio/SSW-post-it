@@ -14,12 +14,17 @@ export class Postit{
 export class AppComponent  {
   name = 'Angular ' + VERSION.major;
   title : string = 'I miei post-it';
-  my_data : Object = {};
+  my_data : Array<Postit> = [];
   selected : Postit = new Postit();
-  constructor(private obj: KVaaSService ){}
+  constructor(private kv: KVaaSService ){}
   getJSON() {
-    this.obj.getData().subscribe(
-      (x: any) => { this.my_data = x; console.log(x)},
+    this.kv.getData().subscribe(
+      (x: any) => { 
+        for (let i in x){
+          this.my_data.push(x[i]);
+        }
+        console.log(this.my_data)
+        },
       err => console.error('Observer got an error: ' + err)
     ) 
   } 
@@ -31,24 +36,17 @@ export class AppComponent  {
   test(){
     console.log(this.my_data["2"].title);
   }
-  addPostit(newPostit: Object){
-    var lastK: number = 0;
-    for (var key in this.my_data){
-      var my_keys = Object.keys(this.my_data);
-      var k = my_keys.length;
-      lastK = parseInt(my_keys[k-1]);
-    }
-    let i: number = lastK+1; 
-    var postit: any = {[i]: newPostit};
-    this.my_data = Object.assign(this.my_data, postit);
-    this.obj.postData(this.my_data).subscribe( 
+  addPostit(newPostit: Postit){
+    this.my_data.push(newPostit);
+    this.kv.postData(this.my_data).subscribe( 
       (x: Object) => {},
       err => console.error("Observer got an error: " + err)
     );
+    console.log(this.my_data);
   }
-  deletePostit(idSel: string ) {
-    delete this.my_data[idSel];
-    this.obj.postData(this.my_data).subscribe( 
+  deletePostit(idSel: number) {
+    this.my_data.splice(idSel);
+    this.kv.postData(this.my_data).subscribe( 
       (x: Object) => {},
       err => console.error("Observer got an error: " + err)
     );
