@@ -4,7 +4,7 @@ import { KVaaSService } from './kvaa-s.service';
 export class Postit{
   title: string;
   text: string;
-  pref: boolean;
+  priority: boolean;
 }
 @Component({
   selector: 'my-app',
@@ -45,7 +45,7 @@ export class AppComponent  {
     console.log(this.my_data);
   }
   deletePostit(idSel: number) {
-    this.my_data.splice(idSel);
+    this.my_data.splice(idSel,1);
     this.kv.postData(this.my_data).subscribe( 
       (x: Object) => {},
       err => console.error("Observer got an error: " + err)
