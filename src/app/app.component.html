@@ -1,11 +1,22 @@
 <h1>{{title}}</h1>
+
 <button (click)="showPref()">Importanti</button>
-<ul>
+<ul *ngIf="clicked_pref == true; else Elseblock">
+  <li *ngFor="let p of prefs | keyvalue">
+   <button (click)="showPostit(x.key)">{{x.value.title}}</button>
+    <button (click)="deletePostit(x.key)">cancella</button>
+  </li>
+  <button (click)="showAll()">mostra tutti</button>
+  </ul>
+  <ng-template #ElseBlock>
+  <ul>
   <li *ngFor="let x of my_data | keyvalue">
     <button (click)="showPostit(x.key)">{{x.value.title}}</button>
     <button (click)="deletePostit(x.key)">cancella</button>
-    </li>
-</ul>
+  </li>
+  </ul>
+  </ng-template>
+
  <button (click)="test()">test</button>
 
 <app-read-post-it [selectedC]="selected"> </app-read-post-it> 

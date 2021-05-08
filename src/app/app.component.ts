@@ -15,6 +15,7 @@ export class AppComponent  {
   name = 'Angular ' + VERSION.major;
   title : string = 'I miei post-it';
   my_data : Array<Postit> = [];
+  clicked_pref: boolean;
   selected : Postit = new Postit();
   constructor(private kv: KVaaSService ){}
   getJSON() {
@@ -52,7 +53,11 @@ export class AppComponent  {
     );
   }
   showPref(){
+    this.clicked_pref = true;
     var prefs:Array<Postit> = this.my_data.filter(postit => postit.pref==true);
     console.log(prefs);
+  }
+  showAll(){
+    this.clicked_pref = false;
   }
 }
