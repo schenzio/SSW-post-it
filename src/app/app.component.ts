@@ -30,7 +30,7 @@ export class AppComponent  {
       err => console.error('Observer got an error: ' + err)
     ) 
   } 
-  load = this.getJSON();
+  //load = this.getJSON();
   showPostit(idSel: string) {
     this.selected.title = this.my_data[idSel].title;
     this.selected.text = this.my_data[idSel].text;
@@ -64,6 +64,8 @@ export class AppComponent  {
   login(key: string){
     //alert(key);
     this.kv.apikey = key;
-    console.log(this.kv.apikey)
+    this.kv.apiURL = "https://api.keyvalue.xyz/" + this.kv.apikey + "/myKey";
+    console.log(this.kv.apikey);
+    this.getJSON();
   }
 }
