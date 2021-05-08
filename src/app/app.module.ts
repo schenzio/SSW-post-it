@@ -12,7 +12,7 @@ import { LoginComponent } from './login/login.component';
 @NgModule({
   imports:      [ BrowserModule, /*FormsModule,*/ HttpClientModule ],
   declarations: [ AppComponent, AddPostItComponent, ReadPostItComponent, LoginComponent ],
-  bootstrap:    [ LoginComponent ],
+  bootstrap:    [ AppComponent ],
   providers: [KVaaSService]
 })
 export class AppModule { }

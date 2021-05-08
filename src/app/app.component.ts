@@ -61,4 +61,7 @@ export class AppComponent  {
   showAll(){
     this.clicked_pref = false;
   }
+  login(key: string){
+    alert(key);
+  }
 }

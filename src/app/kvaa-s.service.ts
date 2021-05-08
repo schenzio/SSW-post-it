@@ -6,7 +6,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class KVaaSService {
-  apiURL: string = "https://api.keyvalue.xyz/5658665f/myKey";
+  apikey: string = "";
+  apiURL: string = "https://api.keyvalue.xyz/" + this.apikey + "/myKey";
+  //apiURL: string = "https://api.keyvalue.xyz/5658665f/myKey";
   //apiURL: string = "https://api.keyvalue.xyz/5d26258c/myKey";
   constructor(private http: HttpClient) { }
 

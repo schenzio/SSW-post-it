@@ -1,0 +1,10 @@
+<label>La tua chiave</label>
+<br/>
+<input #yourKey/>
+<br/>
+<button (click)="newLogin(yourKey.value); yourKey.value=''">Entra</button>
+<br/><br/>
+<label>Non sei registrato?</label>
+<br/>
+<button (click)="newKey()">Ottieni una chiave</button>
+<br/>
