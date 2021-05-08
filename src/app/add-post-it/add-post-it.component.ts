@@ -9,7 +9,12 @@ export class AddPostItComponent implements OnInit {
   @Output() newPostitEvent = new EventEmitter<Object>();
   constructor() { }
   newPostit(title: string, text: string, pref: boolean){
-    this.newPostitEvent.emit({title, text, pref});
+    if (title!=""){
+      this.newPostitEvent.emit({title, text, pref});
+    }
+    else {
+      alert("Il titolo non può essere vuoto");
+    }
   }
   ngOnInit() {
   }

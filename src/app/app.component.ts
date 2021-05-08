@@ -15,8 +15,9 @@ export class AppComponent  {
   name = 'Angular ' + VERSION.major;
   title : string = 'I miei post-it';
   my_data : Array<Postit> = [];
-  clicked_pref: boolean;
+  clicked_pref: boolean = false;
   selected : Postit = new Postit();
+  prefs:Array<Postit> = [];
   constructor(private kv: KVaaSService ){}
   getJSON() {
     this.kv.getData().subscribe(
@@ -43,10 +44,11 @@ export class AppComponent  {
       (x: Object) => {},
       err => console.error("Observer got an error: " + err)
     );
-    console.log(this.my_data);
   }
-  deletePostit(idSel: number) {
+  deletePostit(idSel) {
     this.my_data.splice(idSel,1);
+    this.prefs.splice(idSel,1);
+    this.selected.text = undefined;
     this.kv.postData(this.my_data).subscribe( 
       (x: Object) => {},
       err => console.error("Observer got an error: " + err)
@@ -54,8 +56,7 @@ export class AppComponent  {
   }
   showPref(){
     this.clicked_pref = true;
-    var prefs:Array<Postit> = this.my_data.filter(postit => postit.pref==true);
-    console.log(prefs);
+    this.prefs = this.my_data.filter(postit => postit.pref==true);
   }
   showAll(){
     this.clicked_pref = false;
