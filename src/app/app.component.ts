@@ -62,10 +62,7 @@ export class AppComponent  {
     this.clicked_pref = false;
   }
   login(key: string){
-    //alert(key);
-    this.kv.apikey = key;
-    this.kv.apiURL= this.kv.apiURL.slice(0, 25)+this.kv.apikey+this.kv.apiURL.slice(25);
-    console.log(this.kv.apiURL);
+    this.kv.apiURL= this.kv.apiURL.slice(0, 25)+key+this.kv.apiURL.slice(25);
     this.getJSON();
   }
 }
