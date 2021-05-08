@@ -64,8 +64,8 @@ export class AppComponent  {
   login(key: string){
     //alert(key);
     this.kv.apikey = key;
-    this.kv.apiURL = "https://api.keyvalue.xyz/" + this.kv.apikey + "/myKey";
-    console.log(this.kv.apikey);
+    this.kv.apiURL= this.kv.apiURL.slice(0, 25)+this.kv.apikey+this.kv.apiURL.slice(25);
+    console.log(this.kv.apiURL);
     this.getJSON();
   }
 }
