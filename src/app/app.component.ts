@@ -62,6 +62,8 @@ export class AppComponent  {
     this.clicked_pref = false;
   }
   login(key: string){
-    alert(key);
+    //alert(key);
+    this.kv.apikey = key;
+    console.log(this.kv.apikey)
   }
 }
