@@ -7,11 +7,12 @@ import { HttpClientModule } from "@angular/common/http";
 import { AddPostItComponent } from './add-post-it/add-post-it.component';
 import { ReadPostItComponent } from './read-post-it/read-post-it.component';
 import { KVaaSService } from './kvaa-s.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports:      [ BrowserModule, /*FormsModule,*/ HttpClientModule ],
-  declarations: [ AppComponent, AddPostItComponent, ReadPostItComponent ],
-  bootstrap:    [ AppComponent ],
+  declarations: [ AppComponent, AddPostItComponent, ReadPostItComponent, LoginComponent ],
+  bootstrap:    [ LoginComponent ],
   providers: [KVaaSService]
 })
 export class AppModule { }
