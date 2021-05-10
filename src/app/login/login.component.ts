@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     }
   }  
   newKey(){
-    this.newKeyEvent.emit();
+    this.newKeyEvent.emit('[]');
   }
   ngOnInit() {
   }

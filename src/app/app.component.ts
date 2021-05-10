@@ -67,10 +67,13 @@ export class AppComponent  {
   }
   getNewKey() {
     this.kv.Key().subscribe(
-      (url: any) => {
+      (url: string) => {
         let newKey = url.split("/")[3];
         console.log(url);
         console.log(newKey);
+        //this.kv.apiURL = url;
+        //console.log(this.kv.apiURL);
+        this.login(newKey);
       },
       err => console.error('Observer got an error: ' + err)
     );
