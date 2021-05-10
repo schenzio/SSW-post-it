@@ -18,7 +18,7 @@ export class AppComponent  {
   clicked_pref: boolean = false;
   selected : Postit = new Postit();
   prefs:Array<Postit> = [];
-  logged: boolean = false;
+  enter: boolean = false;
   constructor(private kv: KVaaSService ){}
   getJSON() {
     this.kv.getData().subscribe(
@@ -63,7 +63,7 @@ export class AppComponent  {
   }
   login(key: string){
     this.kv.apiURL= this.kv.apiURL.slice(0, 25)+key+this.kv.apiURL.slice(25);
-    this.logged = true;
+    this.enter = true;
     this.getJSON();
   }
   getNewKey() {

@@ -1,28 +1,28 @@
 <h1>{{title}}</h1>
-<div *ngIf="logged == false; else Main">
+<div *ngIf="enter == false; else main">
   <app-login (LoginEvent)="login($event)" (newKeyEvent)="getNewKey($event)"></app-login>
 </div>
-<div #Main>
-<button (click)="showPref()">Importanti</button>
-  <ul *ngIf="clicked_pref == true; else block">
-  <li *ngFor="let p of prefs | keyvalue">
-    <button (click)="showPostit(p.key)">{{p.value.title}}</button>
-    <button (click)="deletePostit(p)">cancella</button>
-  </li>
-  <br/>
-  <button (click)="showAll()">mostra tutti</button>
-  </ul>
-  <ng-template #block>
-  <ul>
-  <li *ngFor="let x of my_data | keyvalue">
-    <button (click)="showPostit(x.key)">{{x.value.title}}</button>
-    <button (click)="deletePostit(x.key)">cancella</button>
-  </li>
-  </ul>
-  </ng-template>
+<ng-template #main>
+  <button (click)="showPref()">Importanti</button>
+    <ul *ngIf="clicked_pref == true; else block">
+    <li *ngFor="let p of prefs | keyvalue">
+      <button (click)="showPostit(p.key)">{{p.value.title}}</button>
+      <button (click)="deletePostit(p)">cancella</button>
+    </li>
+    <br/>
+    <button (click)="showAll()">mostra tutti</button>
+    </ul>
+    <ng-template #block>
+      <ul>
+        <li *ngFor="let x of my_data | keyvalue">
+          <button (click)="showPostit(x.key)">{{x.value.title}}</button>
+          <button (click)="deletePostit(x.key)">cancella</button>
+        </li>
+      </ul>
+    </ng-template>
 
- <!--<button (click)="test()">test</button>-->
+  <!--<button (click)="test()">test</button>-->
 
-<app-read-post-it [selectedC]="selected"> </app-read-post-it> 
-<app-add-post-it (newPostitEvent)="addPostit($event)"></app-add-post-it>
-</div>
+  <app-read-post-it [selectedC]="selected"> </app-read-post-it> 
+  <app-add-post-it (newPostitEvent)="addPostit($event)"></app-add-post-it>
+</ng-template>
