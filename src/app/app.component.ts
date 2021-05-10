@@ -18,6 +18,7 @@ export class AppComponent  {
   clicked_pref: boolean = false;
   selected : Postit = new Postit();
   prefs:Array<Postit> = [];
+  enter: boolean = false;
   constructor(private kv: KVaaSService ){}
   getJSON() {
     this.kv.getData().subscribe(
@@ -25,12 +26,11 @@ export class AppComponent  {
         for (let i in x){
           this.my_data.push(x[i]);
         }
-        console.log(this.my_data)
+       // console.log(this.my_data)
         },
       err => console.error('Observer got an error: ' + err)
     ) 
   } 
-  //load = this.getJSON();
   showPostit(idSel: string) {
     this.selected.title = this.my_data[idSel].title;
     this.selected.text = this.my_data[idSel].text;
@@ -63,6 +63,7 @@ export class AppComponent  {
   }
   login(key: string){
     this.kv.apiURL= this.kv.apiURL.slice(0, 25)+key+this.kv.apiURL.slice(25);
+    this.enter = true;
     this.getJSON();
   }
   getNewKey() {

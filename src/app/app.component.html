@@ -1,6 +1,8 @@
 <h1>{{title}}</h1>
-<app-login (LoginEvent)="login($event)" (newKeyEvent)="getNewKey($event)"></app-login>
-<br/>
+<div *ngIf="enter == false; else Main">
+  <app-login (LoginEvent)="login($event)" (newKeyEvent)="getNewKey($event)"></app-login>
+</div>
+<div #Main>
 <button (click)="showPref()">Importanti</button>
   <ul *ngIf="clicked_pref == true; else block">
   <li *ngFor="let p of prefs | keyvalue">
@@ -23,3 +25,4 @@
 
 <app-read-post-it [selectedC]="selected"> </app-read-post-it> 
 <app-add-post-it (newPostitEvent)="addPostit($event)"></app-add-post-it>
+</div>
