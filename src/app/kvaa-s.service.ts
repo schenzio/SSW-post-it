@@ -18,4 +18,12 @@ export class KVaaSService {
   public postData(obJSON: Object): Observable<Object> {
     return this.http.post(this.apiURL, obJSON);
   }
+  public getKey(): Observable<Object> {
+    this.apiURL= this.apiURL.slice(0, 25)+'new'+this.apiURL.slice(25);
+    return this.http.get(this.apiURL);
+  }
+  public Key() {
+    return this.http.post('https://api.keyvalue.xyz/new/newKey', '', {
+      responseType: 'text'});
+  }
 }

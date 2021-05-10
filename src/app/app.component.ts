@@ -65,4 +65,14 @@ export class AppComponent  {
     this.kv.apiURL= this.kv.apiURL.slice(0, 25)+key+this.kv.apiURL.slice(25);
     this.getJSON();
   }
+  getNewKey() {
+    this.kv.Key().subscribe(
+      (url: any) => {
+        let newKey = url.split("/")[3];
+        console.log(url);
+        console.log(newKey);
+      },
+      err => console.error('Observer got an error: ' + err)
+    );
+  }  
 }

@@ -1,5 +1,5 @@
 <h1>{{title}}</h1>
-<app-login (LoginEvent)="login($event)"></app-login>
+<app-login (LoginEvent)="login($event)" (newKeyEvent)="getNewKey($event)"></app-login>
 <br/>
 <button (click)="showPref()">Importanti</button>
   <ul *ngIf="clicked_pref == true; else block">

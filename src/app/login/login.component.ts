@@ -7,6 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   @Output() LoginEvent = new EventEmitter<string>();
+  @Output() newKeyEvent = new EventEmitter<string>();
   constructor() { }
   newLogin(key: string){
     if (key!=""){
@@ -16,6 +17,9 @@ export class LoginComponent implements OnInit {
       alert("Il campo chiave non può essere vuoto");
     }
   }  
+  newKey(){
+    this.newKeyEvent.emit();
+  }
   ngOnInit() {
   }
 
