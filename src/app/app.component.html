@@ -1,5 +1,5 @@
 <h1>{{title}}</h1>
-<div *ngIf="enter == false; else Main">
+<div *ngIf="logged == false; else Main">
   <app-login (LoginEvent)="login($event)" (newKeyEvent)="getNewKey($event)"></app-login>
 </div>
 <div #Main>
