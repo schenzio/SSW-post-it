@@ -1,8 +1,10 @@
 <h1>{{title}}</h1>
 <div *ngIf="enter == false; else main">
+  
   <app-login (LoginEvent)="login($event)" (newKeyEvent)="getNewKey($event)"></app-login>
 </div>
 <ng-template #main>
+  <p>Benvenuto {{user}}</p>
   <button (click)="showPref()">Importanti</button>
     <ul *ngIf="clicked_pref == true; else block">
     <li *ngFor="let p of prefs | keyvalue">
