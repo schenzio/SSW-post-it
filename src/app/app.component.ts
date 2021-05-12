@@ -1,4 +1,4 @@
-import { Component, VERSION } from '@angular/core';
+import { Component } from '@angular/core';
 import { KVaaSService } from './kvaa-s.service';
 
 export class Postit{
@@ -12,7 +12,6 @@ export class Postit{
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
-  name = 'Angular ' + VERSION.major;
   title : string = 'I miei post-it';
   my_data : Array<Postit> = [];
   clicked_pref: boolean = false;
@@ -21,13 +20,12 @@ export class AppComponent  {
   enter: boolean = false;
   user: string = '';
   constructor(private kv: KVaaSService ){} 
+  
   showPostit(idSel: string) {
     this.selected.title = this.my_data[idSel].title;
     this.selected.text = this.my_data[idSel].text;
   }
-  test(){
-    console.log(this.my_data);
-  }
+
   addPostit(newPostit: Postit){
     this.my_data.push(newPostit);
     this.kv.postData(this.my_data).subscribe( 
@@ -35,6 +33,7 @@ export class AppComponent  {
       err => console.error("Observer got an error: " + err)
     );
   }
+
   deletePostit(idSel) {
     this.my_data.splice(idSel,1);
     this.prefs.splice(idSel,1);
@@ -44,13 +43,16 @@ export class AppComponent  {
       err => console.error("Observer got an error: " + err)
     );
   }
+
   showPref(){
     this.clicked_pref = true;
     this.prefs = this.my_data.filter(postit => postit.pref==true);
   }
+
   showAll(){
     this.clicked_pref = false;
   }
+
   login(key: string){
     this.kv.apiURL= this.kv.apiURL.slice(0, 25)+key+this.kv.apiURL.slice(25);
     this.enter = true;
@@ -64,14 +66,11 @@ export class AppComponent  {
     )
     this.user = key; 
   }
+
   getNewKey() {
     this.kv.Key().subscribe(
       (url: string) => {
         let newKey = url.split("/")[3];
-        console.log(url);
-        console.log(newKey);
-        //this.kv.apiURL = url;
-        //console.log(this.kv.apiURL);
         this.login(newKey);
       },
       err => console.error('Observer got an error: ' + err)
