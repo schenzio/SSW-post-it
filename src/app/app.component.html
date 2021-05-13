@@ -9,7 +9,7 @@
     <ul *ngIf="clicked_pref == true; else block">
     <li *ngFor="let p of prefs | keyvalue">
       <button (click)="showPostit(p.key)">{{p.value.title}}</button>
-      <button (click)="deletePostit(p)">cancella</button>
+      <button (click)="deletePostit(p.key)">cancella</button>
     </li>
     <br/>
     <button (click)="showAll()">mostra tutti</button>
