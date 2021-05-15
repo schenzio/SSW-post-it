@@ -55,21 +55,41 @@ export class AppComponent  {
 
   login(key: string){
     this.kv.apiURL= this.kv.apiURL.slice(0, 25)+key+this.kv.apiURL.slice(25);
-    this.enter = true;
-    this.kv.getData().subscribe(
+    this.kv.postData('{ }').subscribe( 
+      (x: any) =>{
+        console.log(x);
+      this.kv.getData().subscribe(
       (x: any) => { 
+         console.log(x);
+        //JSON.stringify(x);
         for (let i in x){
           this.my_data.push(x[i]);
         }
+      }
+      )
+      }
+      ,
+      err => console.error('Observer got an error: ' + err)
+    ),
+      err => console.error("Observer got an error: " + err);
+    this.enter = true;
+   /* this.kv.getData().subscribe(
+      (x: any) => { 
+        JSON.stringify(x);
+        for (let i in x){
+          this.my_data.push(x[i]);
+        }
+        
       },
       err => console.error('Observer got an error: ' + err)
-    )
+    )*/
     this.user = key; 
   }
 
   getNewKey() {
     this.kv.Key().subscribe(
       (url: string) => {
+        console.log(url);
         let newKey = url.split("/")[3];
         this.login(newKey);
       },
