@@ -58,18 +58,17 @@ export class AppComponent  {
     this.kv.postData('{ }').subscribe( 
       (x: any) =>{
         console.log(x);
-      this.kv.getData().subscribe(
-      (x: any) => { 
-         console.log(x);
-        //JSON.stringify(x);
-        for (let i in x){
-          this.my_data.push(x[i]);
+        this.kv.getData().subscribe(
+        (x: any) => { 
+          console.log(x);
+          //JSON.stringify(x);
+          for (let i in x){
+            this.my_data.push(x[i]);
+          }
         }
-      }
-      )
-      }
-      ,
-      err => console.error('Observer got an error: ' + err)
+        )
+      },
+      err => {console.error('Observer got an error: ' + err); this. enter = false;}
     ),
       err => console.error("Observer got an error: " + err);
     this.enter = true;
