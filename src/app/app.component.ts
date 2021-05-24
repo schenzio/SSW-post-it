@@ -30,7 +30,7 @@ export class AppComponent  {
     this.my_data.push(newPostit);
     this.kv.postData(this.my_data).subscribe( 
       (x: Object) => {},
-      err => console.error("Observer got an error: " + err)
+      err => console.error("Observer1 got an error: " + err)
     );
   }
 
@@ -40,7 +40,7 @@ export class AppComponent  {
     this.selected.text = undefined;
     this.kv.postData(this.my_data).subscribe( 
       (x: Object) => {},
-      err => console.error("Observer got an error: " + err)
+      err => console.error("Observer2 got an error: " + err)
     );
   }
 
@@ -55,44 +55,47 @@ export class AppComponent  {
 
   login(key: string){
     this.kv.apiURL= this.kv.apiURL.slice(0, 25)+key+this.kv.apiURL.slice(25);
-    this.kv.postData('{ }').subscribe( 
-      (x: any) =>{
-        console.log(x);
-        this.kv.getData().subscribe(
-        (x: any) => { 
-          console.log(x);
-          //JSON.stringify(x);
-          for (let i in x){
-            this.my_data.push(x[i]);
-          }
-        }
-        )
-      },
-      err => {console.error('Observer got an error: ' + err); this. enter = false;}
-    ),
-      err => console.error("Observer got an error: " + err);
-    this.enter = true;
-   /* this.kv.getData().subscribe(
+    this.user = key;
+    this.enter=true;
+    this.kv.getData().subscribe(
       (x: any) => { 
-        JSON.stringify(x);
+        console.log(x);
         for (let i in x){
           this.my_data.push(x[i]);
         }
-        
-      },
-      err => console.error('Observer got an error: ' + err)
-    )*/
-    this.user = key; 
+      }
+    ,
+    err => {
+      console.error('Observer3 got an error: ' + err); 
+      this.enter = false;
+    }
+    )
   }
-
+/*
   getNewKey() {
     this.kv.Key().subscribe(
       (url: string) => {
-        console.log(url);
+        this.user = url.split("/")[3];
         let newKey = url.split("/")[3];
         this.login(newKey);
       },
       err => console.error('Observer got an error: ' + err)
     );
   }  
+}*/
+  getNewKey() {
+    this.kv.Key().subscribe(
+      (url: string) => {
+        this.user = url.split('/')[3];
+        this.kv.apiURL = this.kv.apiURL.slice(0, 25) + this.user + this.kv.apiURL.slice(25);
+        this.kv.postData({}).subscribe(
+          (y: object) => {
+            this.login('');
+          },
+          err => console.error('Observer4 got an error: ' + err)
+        );
+      },
+      err => console.error('Observer5 got an error: ' + err)
+    );
+  }
 }
