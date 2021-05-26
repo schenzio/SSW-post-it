@@ -25,14 +25,16 @@ export class AppComponent  {
     this.selected.title = this.my_data[idSel].title;
     this.selected.text = this.my_data[idSel].text;
   }
-
-  addPostit(newPostit: Postit){
-    this.my_data.push(newPostit);
-    this.kv.postData(this.my_data).subscribe( 
-      (x: Object) => {},
-      err => console.error("Observer1 got an error: " + err)
-    );
-  }
+  addPostit(newPostit: Postit) {
+      this.kv.apiKEY = this.user;
+      this.kv.msg = this.my_data.push(newPostit);
+      this.kv
+        .postData(this.kv.msg)
+        .then(response => response.json(), error => alert(error))
+        .then(data => {
+          console.log(data);
+        });
+    }
 
   deletePostit(idSel) {
     this.my_data.splice(idSel,1);
@@ -71,31 +73,19 @@ export class AppComponent  {
     }
     )
   }
-/*
   getNewKey() {
-    this.kv.Key().subscribe(
-      (url: string) => {
-        this.user = url.split("/")[3];
-        let newKey = url.split("/")[3];
-        this.login(newKey);
-      },
-      err => console.error('Observer got an error: ' + err)
-    );
-  }  
-}*/
-  getNewKey() {
-    this.kv.Key().subscribe(
-      (url: string) => {
-        this.user = url.split('/')[3];
-        this.kv.apiURL = this.kv.apiURL.slice(0, 25) + this.user + this.kv.apiURL.slice(25);
-        this.kv.postData({}).subscribe(
-          (y: object) => {
-            this.login('');
-          },
-          err => console.error('Observer4 got an error: ' + err)
-        );
-      },
-      err => console.error('Observer5 got an error: ' + err)
-    );
+    this.kv.Key().then(key => {
+      fetch(this.kv.apiURL + '/post?key=' + key + '&msg=' + {}, {
+        method: 'POST'
+      })
+        .then(response => response.json(), error => alert(error))
+        .then(data => {
+          console.log(data);
+        });
+    this.user = key;
+  }
+    )
+    this.enter = true;
+    
   }
 }
