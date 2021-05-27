@@ -27,9 +27,10 @@ export class AppComponent  {
   }
   addPostit(newPostit: Postit) {
       this.kv.apiKEY = this.user;
-      this.kv.msg = this.my_data.push(newPostit);
+      this.my_data.push(newPostit);
+      let newmsg: string = JSON.stringify(this.my_data);
       this.kv
-        .postData(this.kv.msg)
+        .postData(newmsg)
         .then(response => response.json(), error => alert(error))
         .then(data => {
           console.log(data);
@@ -40,10 +41,12 @@ export class AppComponent  {
     this.my_data.splice(idSel,1);
     this.prefs.splice(idSel,1);
     this.selected.text = undefined;
-    this.kv.postData(this.my_data).subscribe( 
-      (x: Object) => {},
-      err => console.error("Observer2 got an error: " + err)
-    );
+    let newmsg: string = JSON.stringify(this.my_data);
+    this.kv.postData(newmsg)
+        .then(response => response.json(), error => alert(error))
+        .then(data => {
+          console.log(data);
+        });
   }
 
   showPref(){
@@ -54,25 +57,22 @@ export class AppComponent  {
   showAll(){
     this.clicked_pref = false;
   }
-
-  login(key: string){
-    this.kv.apiURL= this.kv.apiURL.slice(0, 25)+key+this.kv.apiURL.slice(25);
-    this.user = key;
-    this.enter=true;
-    this.kv.getData().subscribe(
-      (x: any) => { 
-        console.log(x);
-        for (let i in x){
-          this.my_data.push(x[i]);
-        }
-      }
-    ,
-    err => {
-      console.error('Observer3 got an error: ' + err); 
-      this.enter = false;
+  login(k: string) {
+      this.kv.apiKEY = k;
+      this.kv
+        .getData()
+        .then(response => response.json(), error => alert(error))
+        .then(data => {
+          let obj = JSON.parse(data);
+          for (let i in obj) {
+            this.my_data.push(obj[i]);
+          }   
+          console.log(this.my_data)         
+          this.enter = true;
+          this.user = k;
+        });
     }
-    )
-  }
+
   getNewKey() {
     this.kv.Key().then(key => {
       fetch(this.kv.apiURL + '/post?key=' + key + '&msg=' + {}, {
