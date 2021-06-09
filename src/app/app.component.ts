@@ -16,7 +16,7 @@ export class AppComponent  {
   my_data : Array<Postit> = [];
   clicked_pref: boolean = false;
   selected : Postit = new Postit();
-  prefs:Array<Postit> = [];
+  prefs: Array<Postit> = [];
   enter: boolean = false;
   user: string = '';
   constructor(private kv: KVaaSService ){} 
@@ -28,6 +28,9 @@ export class AppComponent  {
   addPostit(newPostit: Postit) {
       this.kv.apiKEY = this.user;
       this.my_data.push(newPostit);
+      if (newPostit.pref == true){
+        this.prefs.push(newPostit)
+      }
       let newmsg: string = JSON.stringify(this.my_data);
       this.kv
         .postData(newmsg)
@@ -86,6 +89,5 @@ export class AppComponent  {
   }
     )
     this.enter = true;
-    
   }
 }

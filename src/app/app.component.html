@@ -1,27 +1,27 @@
 <h1>{{title}}</h1>
 <div *ngIf="enter == false; else main">
-  
   <app-login (LoginEvent)="login($event)" (newKeyEvent)="getNewKey($event)"></app-login>
 </div>
 <ng-template #main>
   <p>Benvenuto {{user}}</p>
-  <button (click)="showPref()">Importanti</button>
-    <ul *ngIf="clicked_pref == true; else block">
+  <div *ngIf="clicked_pref == true; else block">
+   <button (click)="showAll()">Mostra tutti</button>
+   <ul>
     <li *ngFor="let p of prefs | keyvalue">
       <button (click)="showPostit(p.key)">{{p.value.title}}</button>
       <button (click)="deletePostit(p.key)">cancella</button>
     </li>
-    <br/>
-    <button (click)="showAll()">mostra tutti</button>
     </ul>
-    <ng-template #block>
-      <ul>
-        <li *ngFor="let x of my_data | keyvalue">
-          <button (click)="showPostit(x.key)">{{x.value.title}}</button>
-          <button (click)="deletePostit(x.key)">cancella</button>
-        </li>
-      </ul>
-    </ng-template>
+  </div>
+  <ng-template #block>
+    <button (click)="showPref()">Importanti</button>
+    <ul>
+      <li *ngFor="let x of my_data | keyvalue">
+        <button (click)="showPostit(x.key)">{{x.value.title}}</button>
+        <button (click)="deletePostit(x.key)">cancella</button>
+      </li>
+    </ul>
+  </ng-template>
   <app-read-post-it [selectedC]="selected"> </app-read-post-it> 
   <app-add-post-it (newPostitEvent)="addPostit($event)"></app-add-post-it>
 </ng-template>
