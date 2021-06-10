@@ -20,7 +20,7 @@ Nel component app sono definite:
 * la funzione getNewKey: callaback associata all’evento newKeyEvent generato dal component login; effettua la registrazione dell’utente, ovvero genera e gli assegna una nuova chiave (funzione Key del servizio)
 * la funzione login: associata all’evento loginEvent generato dal component login; permette a un utente già registrato di fare il login con la propria chiave e scaricare i post-it che aveva salvato (funzione getData del servizio)
 * la funzione addPostit: callaback associata all’evento newPostitEvent generato dal component add-post-it; inserisce un nuovo post-it nella lista e salva la lista aggiornata (funzione postData del servizio)
-* la funzione deletePostit: elimina il postit selezionato e salva la lista aggiornata (funzione postData del servizio)
+* la funzione deletePostit: elimina un postit selezionato e salva la lista aggiornata (funzione postData del servizio)
 * la funzione showPostit: mostra il testo del post-it selezionato (l’oggetto selected, definito nel parent e visualizzato nel template del child read-post-it) 
 * le funzioni showPref e showAll: permettono di visualizzare, rispettivamente, solo i post-it contrassegnati come importanti, oppure l’intera lista di post-it
 
