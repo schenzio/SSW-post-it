@@ -15,7 +15,7 @@ Il servizio kvaas-s contiene tre funzioni, basate su fetch:
 
 Nel component app sono definite:
 * la classe di oggetti Postit, che hanno proprietà title (il titolo), text (il testo) e pref (il contrassegno booleano che indica se il post-it è importante)
-* gli array my_data e prefs, che contengono, rispettivamente, la lista di post-it totale e quella di post-it filtrata sui preferiti
+* gli array my_data e prefs, che contengono, rispettivamente, la lista di post-it totale e quella di post-it filtrata sugli importanti
 * l’oggetto selected di classe Postit, che rappresenta il post-it selezionato dall’utente
 * la funzione getNewKey: è associata all’evento newKeyEvent generato dal component login; effettua la registrazione dell’utente, ovvero genera e gli assegna una nuova chiave (funzione Key del servizio)
 * la funzione login: associata all’evento loginEvent generato dal component login; permette a un utente già registrato di fare il login con la propria chiave e scaricare i post-it che aveva salvato (funzione getData del servizio)
