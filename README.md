@@ -26,12 +26,12 @@ Nel component app sono definite:
 
 Nel component login sono definiti:
 * gli EventEmitter LoginEvent e newKeyEvent per la comunicazione da child a parent
-* la funzione newLogin: genera l'evento associato alla callback login e che trasporta la nuova chiave passata in input dall’utente
+* la funzione newLogin: genera l'evento che trasporta la chiave passata in input dall’utente e che è associato alla callback login
 * la funzione newKey: genera l’evento associato alla callback getNewKey
 
 Nel component add-post-it sono definiti:
 * l'EventEmitter newPostitEvent per la comunicazione da child a parent
-* la funzione newPostit: genera un evento che trasporta al parent il nuovo postit scritto dall’utente 
+* la funzione newPostit: genera un evento che trasporta al parent il nuovo postit scritto dall’utente ed è associato alla callaback addPostit
 
 Nel component read-post-it sono definiti:
 * la proprietà selectedC, collegata alla proprietà selected del comcomponent parent app, ovvero il post-it selezionato
