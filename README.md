@@ -6,10 +6,10 @@
 di Matteo Scannavini, progetto per l’esame di Sviluppo di servizi web a.s. 2020/2021 
 Questa web app realizza un servizio per la scrittura e lettura di post-it. 
 È composta da un component parent (app), tre component child (login, add-post-it e read-post-it) e un servizio (kvaa-s).
-Il servizio kvaas-s contiene tre funzioni, tutte basate su fetch: 
-    • Key: esegue una post a un link che genera una nuova chiave 
-    • postData: esegue una post per salvare dei dati al link personale dell’utente (composto con la propria chiave)
-    • getData: prende i dati salvati al link personale dell’utente
+Il servizio kvaas-s contiene tre funzioni, basate su fetch: 
+    - Key: esegue una post a un link che genera una nuova chiave 
+    - postData: esegue una post per salvare dei dati al link personale dell’utente (composto con la propria chiave)
+    - getData: prende i dati salvati al link personale dell’utente
 Nel component app sono definite:
     • la classe di oggetti Postit, che hanno proprietà title (il titolo), text (il testo) e pref (il contrassegno booleano che indica se il post-it è importante)
     • gli array my_data e prefs, che contengono, rispettivamente, la lista di post-it totale e quella di post-it filtrata sui preferiti
