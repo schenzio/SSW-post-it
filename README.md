@@ -19,14 +19,14 @@ Nel component app sono definite:
 * l’oggetto selected di classe Postit, che rappresenta il post-it selezionato dall’utente
 * la funzione getNewKey: callaback associata all’evento newKeyEvent generato dal component login; effettua la registrazione dell’utente, ovvero genera e gli assegna una nuova chiave (funzione Key del servizio)
 * la funzione login: associata all’evento loginEvent generato dal component login; permette a un utente già registrato di fare il login con la propria chiave e scaricare i post-it che aveva salvato (funzione getData del servizio)
-* la funzione addPostit: callaback associata all’evento newPostitEvent generato dal component add-post-it; inserisce un nuovo post-it nella lista e salva la lista aggiornata di post-it  (funzione postData del servizio)
-* la funzione deletePostit: elimina il postit selezionato e salva la lista aggiornata di post-it (funzione postData del servizio)
+* la funzione addPostit: callaback associata all’evento newPostitEvent generato dal component add-post-it; inserisce un nuovo post-it nella lista e salva la lista aggiornata (funzione postData del servizio)
+* la funzione deletePostit: elimina il postit selezionato e salva la lista aggiornata (funzione postData del servizio)
 * la funzione showPostit: mostra il testo del post-it selezionato (l’oggetto selected, definito nel parent e visualizzato nel template del child read-post-it) 
-* le funzioni showPref e showAll: servono per visualizzare, rispettivamente, solo i post-it contrassegnati come importanti, oppure l’intera lista di post-it
+* le funzioni showPref e showAll: permettono di visualizzare, rispettivamente, solo i post-it contrassegnati come importanti, oppure l’intera lista di post-it
 
 Nel component login sono definiti:
 * gli EventEmitter LoginEvent e newKeyEvent per la comunicazione da child a parent
-* la funzione newLogin: genera un evento associato alla callback login e che trasporta la nuova chiave passata in input dall’utente
+* la funzione newLogin: genera l'evento associato alla callback login e che trasporta la nuova chiave passata in input dall’utente
 * la funzione newKey: genera l’evento associato alla callback getNewKey
 
 Nel component add-post-it sono definiti:
