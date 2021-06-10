@@ -10,8 +10,8 @@ Questa web app realizza un servizio per la scrittura e lettura di post-it.
 
 Il servizio kvaas-s contiene tre funzioni, basate su fetch: 
 * Key: esegue una post a un link che genera una nuova chiave 
-* postData: esegue una post per salvare dei dati al link personale dell’utente (composto con la propria chiave)
-* getData: prende i dati salvati al link personale dell’utente
+* postData: esegue una post al link personale dell’utente (composto con la propria chiave) per salvare dei dati 
+* getData: esegue una get al link personale dell’utente per prendere i dati salvati 
 
 Nel component app sono definite:
 * la classe di oggetti Postit, con proprietà title (il titolo), text (il testo) e pref (il contrassegno booleano che indica se il post-it è importante)
