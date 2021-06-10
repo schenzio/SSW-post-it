@@ -4,6 +4,7 @@
 
 ## App post-it
 di Matteo Scannavini, progetto per l’esame di Sviluppo di servizi web a.s. 2020/2021 
+
 Questa web app realizza un servizio per la scrittura e lettura di post-it. 
 È composta da un component parent (app), tre component child (login, add-post-it e read-post-it) e un servizio (kvaa-s).
 
