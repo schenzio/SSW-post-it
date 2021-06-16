@@ -42,7 +42,6 @@ export class AppComponent  {
 
   deletePostit(idSel) {
     this.my_data.splice(idSel,1);
-    this.prefs.splice(idSel,1);
     this.selected.text = undefined;
     let newmsg: string = JSON.stringify(this.my_data);
     this.kv.postData(newmsg)
